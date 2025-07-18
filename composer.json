@@ -1,0 +1,28 @@
+{
+    "name": "maxitremediation/maxitremediation",
+    "description": "Remediation",
+    "autoload": {
+        "psr-4": {
+            "Maxitremediation\\Maxitremediation\\": "src/",
+            "App\\Core\\Abstract\\":"app/core/abstract/",
+            "App\\Config\\":"app/config/",
+            "App\\Core\\":"app/core/",
+            "App\\Core\\Middlewares\\":"app/core/middlewares/",
+            "App\\Service\\":"src/service/",
+            "App\\Entity\\":"src/entity/",
+            "App\\Repository\\":"src/repository/",
+            "App\\Controller\\":"src/controller/"
+
+
+        }
+    },
+    "authors": [
+        {
+            "name": "Khadidiatou",
+            "email": "jamiral2019@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
