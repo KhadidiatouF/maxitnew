@@ -22,16 +22,12 @@ class TransactionController extends AbstractController{
         $transactions = $this->transactionService->renderTransaction($idcompte);
         // $this->session->set('transactions', $transactions);
         $this->renderHtml('client/accueil.html.php', $transactions);
-
-        // if () {
-        //     # code...
-        // }
     }
  
-     public function index(){}
-     public function show(){}
+    public function index(){}
+    public function show(){}
 
-     public function create(){
+    public function create(){
 
      }
 

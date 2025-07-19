@@ -21,6 +21,10 @@ class CompteService{
         return $this->compteRepository->getSolde($id);
     }
 
+     public function creationCompteSecondaire($data){
+        return $this->compteRepository->compteSecondaire($data);
+    }
+
 
 
 }

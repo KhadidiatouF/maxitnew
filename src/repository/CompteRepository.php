@@ -2,6 +2,7 @@
 namespace App\Repository;
 
 use App\Core\Abstract\AbstractRepository;
+use DateTime;
 
 class CompteRepository extends AbstractRepository{
 
@@ -46,19 +47,20 @@ class CompteRepository extends AbstractRepository{
             return $id;
     }
 
-      public function compteSecondaire($iduser){
-         $sql = "INSERT INTO compte where iduser = :iduser AND type = 'principal'  ";
+      public function compteSecondaire($data){
+         $sql = "INSERT INTO compte (numero, solde, date_creation,  type, iduser) 
+                        VALUES (:numero, :solde, :date_creation,  :type, :iduser)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([
-                ':iduser' => $iduser
+                ':numero' => (int)$data['numero'],
+                ':solde' => $data['solde'],
+                ':date_creation' => new DateTime(),
+                ':type' => 'secondaire',
+                ':iduser' => $data['iduser'],
             ]);
 
-            $id = $stmt->fetch(\PDO::FETCH_ASSOC);
-            return $id;
+            return $this->pdo->lastInsertId();
     }
-
-
-    
 
     public function update(){}
     public function delete(){}

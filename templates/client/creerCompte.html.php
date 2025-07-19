@@ -5,7 +5,7 @@
     <div class="bg-white m-auto  rounded-lg shadow-lg p-8 w-1/2  h-1/2 ">
         <h1 class="text-xl font-semibold text-gray-800 mb-8 text-center">Ajouter compte secondaire</h1>
         
-        <form class="space-y-6">
+        <form action="" method="post" class="space-y-6">
             <div>
                 <label for="numero" class="block text-sm font-medium text-gray-700 mb-2">Numéro de téléphone</label>
                 <div class="relative">

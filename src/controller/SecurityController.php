@@ -50,6 +50,8 @@ class SecurityController extends AbstractController{
 
            $this->session->set('user',$user );
            $this->session->set('idcompte', $this->userCompteService->getIdComptePrincipale($user->getId()));
+           $this->session->set('iduser', $this->compteService->creationCompteSecondaire($user->getId()));
+
            header("Location: ". URL."accueilClient");  
         }else {
            $this->session->set('loginMdp','Login ou mot de passe incorrect ' );
@@ -145,7 +147,7 @@ class SecurityController extends AbstractController{
     }
 
     public function show(){
-        
+
     }
 
 }
