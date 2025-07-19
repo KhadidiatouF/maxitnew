@@ -11,9 +11,9 @@ class SmsService
 
     public function __construct()
     {
-        $this->sid = 'ACf27ab4f0764131c0e1b4cda5cda3cc72';   
-        $this->token = '363140237ed78663de913f23ec7e24ae';  
-        $this->twilioNumber = '+17179737014'; 
+        $this->sid = SID;   
+        $this->token = TOKEN;  
+        $this->twilioNumber = PHONE; 
         // var_dump($this->sid );die;
     }
 
