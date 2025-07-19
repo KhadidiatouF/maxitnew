@@ -12,8 +12,8 @@ class SmsService
     public function __construct()
     {
         $this->sid = getenv('TWILIO_SID');   
-        $this->token = TOKEN;  
-        $this->twilioNumber = PHONE; 
+        $this->token = getenv('TWILIO_TOKEN');  
+        $this->twilioNumber = getenv('TWILIO_PHONE'); 
         // var_dump($this->sid );die;
     }
 
