@@ -4,11 +4,13 @@ namespace App\Core;
 class Validator {
     private static array $errors=[];
 
-     public static function isValidSenegalPhone($numero, $key, $message) {
-            if (!preg_match('/^7[05678][0-9]{7}$/', $numero)) {
-                self::$errors[$key] = $message;
-            }
+    public static function isValidSenegalPhone($numero, $key, $message) {
+        $numero = str_replace(' ', '', $numero);
+        if (!preg_match('/^(?:\+221)?7[05678][0-9]{7}$/', $numero)) {
+            self::$errors[$key] = $message;
+        }
     }
+
 
    public static function isValidCni($cni, $key, $message) {
         $effacer = str_replace(' ', '', $cni);

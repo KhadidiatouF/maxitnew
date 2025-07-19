@@ -17,12 +17,16 @@ class ClientController extends AbstractController{
  
 
     public function create(){
-        // $this->renderHtml('client/accueil.html.php');
+        $this->renderHtml('client/transfert.html.php');
     }
 
     public function index(){
         $this->renderHtml('client/creerCompte.html.php');
 
+    }
+
+    public function show(){
+        $this->renderHtml('client/voirPlus.html.php');
     }
 
 }

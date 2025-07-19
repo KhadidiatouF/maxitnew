@@ -21,6 +21,12 @@ return $routes=[
 
     "/creerCompte"=>["controller"=>ClientController::class, "action"=>"index"],
 
+    "/transactions"=>["controller"=>ClientController::class, "action"=>"create"],
+
+    "/voirPlus"=>["controller"=>ClientController::class, "action"=>"show"],
+
+
+
     
 
 ];

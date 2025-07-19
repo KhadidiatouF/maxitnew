@@ -113,8 +113,12 @@
                 </div>
             </div>
 
+              <div class="flex items-center  justify-end mb-6">
+                <a href="/voirPlus" class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors">Voir plus</a>
+               </div>
             <div class="bg-white rounded-2xl p-6 card-shadow">
                 <h3 class="text-lg font-semibold text-gray-900 mb-6">Historique</h3>
+                  
 
                 <div class="overflow-x-auto">
                 
@@ -129,19 +133,18 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-orange-100">
-                    <?php  foreach ($data as $key => $value): ?>
-                            
-                            <tr>
-                                <td class="px-4 py-10"><?= $value['id'] ?? '' ?></td>
-                                <td class="px-4 py-10 text-orange-600"><?= $value['date'] ?? '' ?></td>
-                                <td class="px-4 py-10"><?= $value['type'] ?? '' ?></td>
-                                <td class="px-4 py-10 font-semibold <?= ($value['type'] ?? '') === 'Retrait' ? 'text-red-600' : 'text-green-600' ?>">
-                                    <?= ($value['type'] ?? '') === 'Retrait' ? '-' : '+' ?>
-                                    <?= $value['montant'] ?? '' ?> CFA
-                                </td>
-                            </tr>
-                    <?php endforeach ; ?>
-
+                            <?php  foreach ($data as $key => $value): ?>
+                                    
+                                    <tr>
+                                        <td class="px-4 py-10"><?= $value['id'] ?? '' ?></td>
+                                        <td class="px-4 py-10 text-orange-600"><?= $value['date'] ?? '' ?></td>
+                                        <td class="px-4 py-10"><?= $value['type'] ?? '' ?></td>
+                                        <td class="px-4 py-10 font-semibold <?= ($value['type'] ?? '') === 'Retrait' ? 'text-red-600' : 'text-green-600' ?>">
+                                            <?= ($value['type'] ?? '') === 'Retrait' ? '-' : '+' ?>
+                                            <?= $value['montant'] ?? '' ?> CFA
+                                        </td>
+                                    </tr>
+                            <?php endforeach ; ?>
                         </tbody>
                     </table>
 

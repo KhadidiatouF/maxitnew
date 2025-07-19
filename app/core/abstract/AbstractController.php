@@ -17,6 +17,8 @@ abstract class AbstractController {
 
     abstract public function index();
     abstract public function create();
+    abstract public function show();
+
 
 
 

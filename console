@@ -1,0 +1,35 @@
+<?php
+require __DIR__ . '/vendor/autoload.php';
+
+use App\Core\App;
+use Dotenv\Dotenv;
+
+    $dotenv= Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+    $url=$_ENV['WEB_ROUTE'];
+
+        define('DSN', $_ENV['dsn']);
+        define('USER', $_ENV['DB_USER']);
+        define('PASSWORD', $_ENV['DB_PASSWORD']);
+        define('URL', $_ENV['WEB_ROUTE']);
+
+$app = new App();
+
+    $command = $argv[1] ?? null;
+
+    switch ($command) {
+        case 'migrate':
+            $app->get('migrations')->run();
+            echo "Migration fait avec succès ! ";
+
+            break;
+        case 'seed':
+            $app->get('seeders')->run();
+            echo "Seeder fait avec succès ! ";
+
+            break;
+        default:
+            echo "Commande inconnue : ";
+            echo "Utilisez: migrate ou seed ";
+            break;
+    }

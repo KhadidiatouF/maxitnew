@@ -15,6 +15,8 @@ class Router{
 
             $controller = new $controllerName();
             $controller->$actionName();
+
+            
         }
     }
 

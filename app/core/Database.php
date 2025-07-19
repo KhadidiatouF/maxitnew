@@ -13,14 +13,7 @@ class Database {
     {
         try{
 
-            // $host = 'localhost';
-            // $dbname = 'remediation';
-            // $user = 'postgres';
-            // $pass = 'khadijaf'; 
-            // $port= '5432';
-                
-            // $dsn = "pgsql:host=$host;port=$port;dbname=$dbname";
-
+         
             $this->pdo= new PDO(DSN, USER, PASSWORD);
 
         } catch (PDOException $e) {

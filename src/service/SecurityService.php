@@ -23,7 +23,7 @@ class SecurityService
             return null;
         }
 
-        if ($mdp === $user->getMdp()) {
+        if (password_verify($mdp,$user->getMdp() )) {
             return $user;
         } else {
             return null;

@@ -1,5 +1,5 @@
 <?php
-namespace App\Core\Abstract;
+namespace App\Core;
 
 
 class FileUpload

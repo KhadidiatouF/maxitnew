@@ -76,10 +76,10 @@ unset($_SESSION['errors'], $_SESSION['old']);
                     <div>
                         <label for="adresse" class="block text-gray-700 text-sm font-bold mb-2">Mot de passe</label>
                         <input type="password" id="mdp" name="mdp"  placeholder="Entrer votre mot de passe" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">                                              
-                            <?php if (!empty($errors['mdp'])): ?>
-                                <span class="text-red-500 text-sm font-bold"><?= $errors['mdp'] ?></span>
-                            <?php endif; ?>
-                    </div>
+                                <?php if (!empty($errors['mdp'])): ?>
+                                    <span class="text-red-500 text-sm font-bold"><?= $errors['mdp'] ?></span>
+                                <?php endif; ?>
+                        </div>
 
                 <div class="flex space-x-4">
                     <div class="w-1/2">

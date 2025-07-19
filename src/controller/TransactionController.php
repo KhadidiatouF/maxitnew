@@ -29,6 +29,8 @@ class TransactionController extends AbstractController{
     }
  
      public function index(){}
+     public function show(){}
+
      public function create(){
 
      }

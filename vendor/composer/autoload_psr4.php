@@ -6,15 +6,19 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Twilio\\' => array($vendorDir . '/twilio/sdk/src/Twilio'),
     'Symfony\\Polyfill\\Php80\\' => array($vendorDir . '/symfony/polyfill-php80'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
+    'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
     'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src/PhpOption'),
     'Maxitremediation\\Maxitremediation\\' => array($baseDir . '/src'),
     'GrahamCampbell\\ResultType\\' => array($vendorDir . '/graham-campbell/result-type/src'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'App\\Service\\' => array($baseDir . '/src/service'),
+    'App\\Seeders\\' => array($baseDir . '/seeders'),
     'App\\Repository\\' => array($baseDir . '/src/repository'),
+    'App\\Migrations\\' => array($baseDir . '/migrations'),
     'App\\Entity\\' => array($baseDir . '/src/entity'),
     'App\\Core\\Middlewares\\' => array($baseDir . '/app/core/middlewares'),
     'App\\Core\\Abstract\\' => array($baseDir . '/app/core/abstract'),

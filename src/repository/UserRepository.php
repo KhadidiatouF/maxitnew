@@ -19,7 +19,7 @@ class UserRepository extends AbstractRepository{
                 ':numerocarte' => $data['numerocarte'],
                 ':photorecto' => $data['photorecto'],
                 ':photoverso' => $data['photoverso'],
-                ':idtypeuser' => $data['idtypeuser']
+                ':idtypeuser' => 1
             ]);
 
             return $this->pdo->lastInsertId();

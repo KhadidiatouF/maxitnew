@@ -8,24 +8,42 @@ use App\Repository\UserCompteRepository;
 use App\Repository\UserRepository;
 use App\Service\CompteService;
 use App\Service\SecurityService;
+use App\Service\SmsService;
 use App\Service\TransactionService;
 use App\Service\UserCompteService;
+use Symfony\Component\Yaml\Yaml;
 
 class App{
         private static $dependences = [];
+
+        private array $services=[];
+
+
+        public function __construct()
+        {
+            $this->loadService();
+        }
+
+        public function loadService(){
+            $config = Yaml::parseFile(__DIR__. '/../config/services.yml');
+            foreach ($config['services'] as $key => $class) {
+                $this->services[$key] = new $class();
+            }
+        }
+
+        public function get(string $name){
+            return $this->services[$name] ?? null;
+        }
         
         public static function init(){
             self::$dependences = [
                 'session'=> Session::getInstance(),
                 'router' => new Router(),
                 'database' => Database::getInstance(),
-               
                 'securityRepository'=>SecurityRepository::getInstance(),
-                // 'transactionRepository'=> new TransactionRepository(),
 
 
             ];
-            // self::$dependences['session']=Session::getInstance();
             self::registerDependency('compteRepository', CompteRepository::class);
             self::registerDependency('userRepository', UserRepository::class);
             self::registerDependency('userCompteRepository', UserCompteRepository::class);
@@ -34,7 +52,8 @@ class App{
             self::registerDependency('securityService', SecurityService::class);
             self::registerDependency('transactionRepository', TransactionRepository::class);
             self::registerDependency('transactionService' , TransactionService::class);
-            // self::registerDependency('session', Session::class);
+            self::registerDependency('smsService' , SmsService::class);
+
 
 
 

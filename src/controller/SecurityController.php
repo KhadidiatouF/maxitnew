@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 use App\Core\Abstract\AbstractController;
-use App\Core\Abstract\FileUpload;
+use App\Core\FileUpload;
 use App\Core\App;
 use App\Core\Middlewares\CryptPassword;
 use App\Core\Validator;
@@ -44,6 +44,7 @@ class SecurityController extends AbstractController{
         }
 
         if ($user) {
+           $activePage = $activePage ?? 'accueil';
            $solde = $this->compteService->afficheSolde($user->getID());
            $this->session->set('solde',$solde );
 
@@ -64,13 +65,17 @@ class SecurityController extends AbstractController{
         $crypteur = new CryptPassword();
         $crypteur();
 
+        
+
         $nom = $_POST['nom'] ?? '';
         $prenom = $_POST['prenom'] ?? '';
         $numeroTelephone = $_POST['numero'] ?? '';
         $numeroCarte = $_POST['carte_identite'] ?? '';
         $login = $_POST['login'] ?? '';
         $mdp = $_POST['mdp'] ?? '';
+        // var_dump($mdp);die;
 
+       
         Validator::isEmpty($nom, 'nom', 'Le nom est requis');
         Validator::isEmpty($prenom, 'prenom', 'Le prénom est requis');
         Validator::isEmpty($numeroTelephone, 'numerotelephone', 'Le numéro de tel est requis');
@@ -89,6 +94,8 @@ class SecurityController extends AbstractController{
             $this->renderHtml('security/inscription.html.php');
             return;
         }
+
+       
 
         $uploader = new FileUpload();
         $photoRecto = $uploader->upload($_FILES['photo_recto']);
@@ -109,9 +116,9 @@ class SecurityController extends AbstractController{
 
         if ($estInscrit) {
 
-                // $smsService = App::getDependencie('smsService');
-                // $message = "Bienvenue sur MAXITSA, $prenom ! Votre compte est bien créé.";
-                // $smsService->envoyerSms($numeroTelephone, $message);
+                $smsService = App::getDependencie('smsService');
+                $message = "Bienvenue sur MAXITSA, $prenom ! Votre compte est bien créé.";
+                $smsService->envoyerSms($numeroTelephone, $message);
             header("Location: " . URL);
             exit;
         } else {
@@ -135,6 +142,10 @@ class SecurityController extends AbstractController{
 
     public function index(){
         $this->renderHtml('security/inscription.html.php');  
+    }
+
+    public function show(){
+        
     }
 
 }

@@ -11,7 +11,9 @@
             "App\\Service\\":"src/service/",
             "App\\Entity\\":"src/entity/",
             "App\\Repository\\":"src/repository/",
-            "App\\Controller\\":"src/controller/"
+            "App\\Controller\\":"src/controller/",
+            "App\\Migrations\\":"migrations/",
+            "App\\Seeders\\":"seeders/" 
 
 
         }
@@ -23,6 +25,12 @@
         }
     ],
     "require": {
-        "vlucas/phpdotenv": "^5.6"
+        "vlucas/phpdotenv": "^5.6",
+        "symfony/yaml": "^7.3",
+        "twilio/sdk": "^8.6"
+    },
+    "scripts": {
+        "database:migrate":"php console migrate",
+        "database:seed":"php console seed"
     }
 }

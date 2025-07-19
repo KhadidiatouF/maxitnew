@@ -7,7 +7,7 @@
         
         <form class="space-y-6">
             <div>
-                <label for="numero" class="block text-sm font-medium text-gray-700 mb-2">Numero *</label>
+                <label for="numero" class="block text-sm font-medium text-gray-700 mb-2">Numéro de téléphone</label>
                 <div class="relative">
                     <input 
                         type="text" 

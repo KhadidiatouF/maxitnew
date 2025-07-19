@@ -6,7 +6,7 @@ class CryptPassword{
 
     public function __invoke()
     {
-        if (isset($_POST['mdp'])) {
+        if (!empty($_POST['mdp'])) {
              $_POST['mdp']= password_hash($_POST['mdp'], PASSWORD_DEFAULT);
 
         }
