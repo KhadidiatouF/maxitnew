@@ -12,18 +12,13 @@ class Database {
     private function __construct()
     {
 
-        $host = HOST;
-        $dbname = DB_NAME;
-        $username = USER_NAME;
-        $password = PASSWORD;
-        $port = PORT;
-
-
 
         try{
 
          
-            $this->pdo= new PDO("pgsql:host=$host;dbname=$dbname;port=$port", $username, $password);
+            // $this->pdo= new PDO("pgsql:host=".HOST."dbname=".DB_NAME."port=".PORT.DB_NAME.PASSWORD);
+            $this->pdo = new PDO("pgsql:host=".HOST.";dbname=".DB_NAME.";port=".PORT, USER_NAME, PASSWORD
+);
 
         } catch (PDOException $e) {
 
