@@ -17,8 +17,8 @@ class UserRepository extends AbstractRepository{
                 ':login' => $data['login'],
                 ':mdp' => $data['mdp'],
                 ':numerocarte' => $data['numerocarte'],
-                ':photorecto' => $data['photorecto'],
-                ':photoverso' => $data['photoverso'],
+                // ':photorecto' => $data['photorecto'],
+                // ':photoverso' => $data['photoverso'],
                 ':idtypeuser' => 1
             ]);
 

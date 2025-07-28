@@ -47,20 +47,20 @@ class CompteRepository extends AbstractRepository{
             return $id;
     }
 
-      public function compteSecondaire($data){
-         $sql = "INSERT INTO compte (numero, solde, date_creation,  type, iduser) 
-                        VALUES (:numero, :solde, :date_creation,  :type, :iduser)";
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([
-                ':numero' => (int)$data['numero'],
-                ':solde' => $data['solde'],
-                ':date_creation' => new DateTime(),
-                ':type' => 'secondaire',
-                ':iduser' => $data['iduser'],
-            ]);
+    //   public function compteSecondaire($data){
+    //      $sql = "INSERT INTO compte (numero, solde, date_creation,  type, iduser) 
+    //                     VALUES (:numero, :solde, :date_creation,  :type, :iduser)";
+    //         $stmt = $this->pdo->prepare($sql);
+    //         $stmt->execute([
+    //             ':numero' => (int)$data['numero'],
+    //             ':solde' => $data['solde'],
+    //             ':date_creation' =>$data['date_creation'],
+    //             ':type' => 'secondaire',
+    //             ':iduser' => $data['iduser'],
+    //         ]);
 
-            return $this->pdo->lastInsertId();
-    }
+    //         return $this->pdo->lastInsertId();
+    // }
 
     public function update(){}
     public function delete(){}

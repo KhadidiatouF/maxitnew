@@ -50,7 +50,7 @@ class SecurityController extends AbstractController{
 
            $this->session->set('user',$user );
            $this->session->set('idcompte', $this->userCompteService->getIdComptePrincipale($user->getId()));
-           $this->session->set('iduser', $this->compteService->creationCompteSecondaire($user->getId()));
+        //    $this->session->set('iduser', $this->compteService->creationCompteSecondaire($user->getId()));
 
            header("Location: ". URL."accueilClient");  
         }else {
@@ -78,8 +78,8 @@ class SecurityController extends AbstractController{
         // var_dump($mdp);die;
 
        
-        Validator::isEmpty($nom, 'nom', 'Le nom est requis');
-        Validator::isEmpty($prenom, 'prenom', 'Le prénom est requis');
+        // Validator::isEmpty($nom, 'nom', 'Le nom est requis');
+        // Validator::isEmpty($prenom, 'prenom', 'Le prénom est requis');
         Validator::isEmpty($numeroTelephone, 'numerotelephone', 'Le numéro de tel est requis');
         Validator::isEmpty($numeroCarte, 'carte_identite', 'Le numero de cin est requis');
         Validator::isEmpty($login, 'login', 'Le login est requis');
@@ -88,8 +88,8 @@ class SecurityController extends AbstractController{
         Validator::isValidSenegalPhone($numeroTelephone, 'numero', 'Numéro invalide');
         Validator::isValidCni($numeroCarte, 'carte_identite', 'Format de carte invalide');
 
-        Validator::isFileUploaded($_FILES['photo_recto'], 'photo_recto', 'Photo recto requise');
-        Validator::isFileUploaded($_FILES['photo_verso'], 'photo_verso', 'Photo verso requise');
+        // Validator::isFileUploaded($_FILES['photo_recto'], 'photo_recto', 'Photo recto requise');
+        // Validator::isFileUploaded($_FILES['photo_verso'], 'photo_verso', 'Photo verso requise');
 
         if (!Validator::isValid()) {
             $this->session->set('errors',Validator::getErrors());
@@ -99,9 +99,9 @@ class SecurityController extends AbstractController{
 
        
 
-        $uploader = new FileUpload();
-        $photoRecto = $uploader->upload($_FILES['photo_recto']);
-        $photoVerso = $uploader->upload($_FILES['photo_verso']);
+        // $uploader = new FileUpload();
+        // $photoRecto = $uploader->upload($_FILES['photo_recto']);
+        // $photoVerso = $uploader->upload($_FILES['photo_verso']);
 
         $data = [
             'nom' => $nom,
@@ -110,8 +110,8 @@ class SecurityController extends AbstractController{
             'login' => $login,
             'mdp' => $mdp,
             'numerocarte' => $numeroCarte,
-            'photorecto' => $photoRecto,
-            'photoverso' => $photoVerso
+            // 'photorecto' => $photoRecto,
+            // 'photoverso' => $photoVerso
         ];
 
             $estInscrit = $this->userCompteService->inscriptionService($data);

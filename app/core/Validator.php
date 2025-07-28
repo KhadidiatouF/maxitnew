@@ -50,11 +50,11 @@ class Validator {
     }
 
 
-    public static function isFileUploaded(array $file, string $key, string $message): void {
-        if (!isset($file['error']) || $file['error'] !== UPLOAD_ERR_OK) {
-            self::$errors[$key] = $message;
-        }
-    }
+    // public static function isFileUploaded(array $file, string $key, string $message): void {
+    //     if (!isset($file['error']) || $file['error'] !== UPLOAD_ERR_OK) {
+    //         self::$errors[$key] = $message;
+    //     }
+    // }
 
 
 }

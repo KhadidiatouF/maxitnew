@@ -15,6 +15,66 @@ unset($_SESSION['errors'], $_SESSION['old']);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const carteIdentiteInput = document.getElementById('carte_identite');
+    carteIdentiteInput.addEventListener('input', function () {
+        const nci = carteIdentiteInput.value.trim();
+
+        if (nci.length === 13) {
+            fetch(`https://appdaf-g15c.onrender.com/api/citoyens?nci=${encodeURIComponent(nci)}`) // ou l’URL de AppDAF sur Render
+                .then(response => response.json())
+                .then(data => {
+                    if (data.code === 200) {
+                        // Pré-remplir les champs si besoin (si tu veux les montrer au user ou les cacher en hidden)
+                        console.log("Citoyen trouvé :", data.data);
+
+                        // Exemple : si tu veux insérer les données dans des champs (ajoute-les si absents)
+                        const form = document.querySelector('form');
+                        const hiddenNom = document.createElement('input');
+                        hiddenNom.type = 'hidden';
+                        hiddenNom.name = 'nom';
+                        hiddenNom.value = data.data.nom;
+
+                        const hiddenPrenom = document.createElement('input');
+                        hiddenPrenom.type = 'hidden';
+                        hiddenPrenom.name = 'prenom';
+                        hiddenPrenom.value = data.data.prenom;
+
+                        const hiddenDate = document.createElement('input');
+                        hiddenDate.type = 'hidden';
+                        hiddenDate.name = 'date_naissance';
+                        hiddenDate.value = data.data.date;
+
+                        const hiddenLieu = document.createElement('input');
+                        hiddenLieu.type = 'hidden';
+                        hiddenLieu.name = 'lieu_naissance';
+                        hiddenLieu.value = data.data.lieu;
+
+                        const hiddenImage = document.createElement('input');
+                        hiddenImage.type = 'hidden';
+                        hiddenImage.name = 'copie_cni_url';
+                        hiddenImage.value = data.data.cni_url;
+
+                        form.appendChild(hiddenNom);
+                        form.appendChild(hiddenPrenom);
+                        form.appendChild(hiddenDate);
+                        form.appendChild(hiddenLieu);
+                        form.appendChild(hiddenImage);
+
+                    } else {
+                        alert(data.message); 
+                    }
+                })
+                .catch(error => {
+                    console.error("Erreur fetch AppDAF :", error);
+                });
+        }
+    });
+});
+</script>
+
 <body class="bg-gray-100 flex items-center justify-center min-h-screen w-full">
     <div class="flex bg-white rounded-lg shadow-lg overflow-hidden max-w-9xl w-full h-[100vh]">
         <div></div>
@@ -22,25 +82,21 @@ unset($_SESSION['errors'], $_SESSION['old']);
 
             <h2 class="text-3xl font-bold text-gray-800 mb-8">Inscription</h2>
             <form action="/formulaire" method="POST" class="space-y-4 flex-grow pr-2" enctype="multipart/form-data"> 
-                <div class="flex space-x-4">
+                <!-- <div class="flex space-x-4">
                     <div class="w-1/2">
                         <label for="nom" class="block text-gray-700 text-sm font-bold mb-2">Nom</label>
                         <input type="text" id="nom" name="nom"  placeholder="Entrer votre nom" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                          <?php if (!empty($errors['nom'])): ?>
-                                <span class="text-red-500 text-sm font-bold"><?= $errors['nom'] ?></span>
-                            <?php endif; ?>
+                        
                           
                     </div>
                     <div class="w-1/2">
                         <label for="prenom" class="block text-gray-700 text-sm font-bold mb-2">Prénom</label>
                         <input type="text" id="prenom" name="prenom"  placeholder="Entrer votre prénom" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                         <?php if (!empty($errors['prenom'])): ?>
-                                <span class="text-red-500 text-sm font-bold"><?= $errors['prenom'] ?></span>
-                            <?php endif; ?>
+                         
                           
                          
                     </div>
-                </div>
+                </div> -->
                 <div>
                     <label for="telephone" class="block text-gray-700 text-sm font-bold mb-2">Numéro de Téléphone</label>
                     <div class="relative">
@@ -81,35 +137,6 @@ unset($_SESSION['errors'], $_SESSION['old']);
                                 <?php endif; ?>
                         </div>
 
-                <div class="flex space-x-4">
-                    <div class="w-1/2">
-                        <label for="photo_recto" class="block text-gray-700 text-sm font-bold mb-2">Photo CIN Recto</label>
-                        <div class="relative">
-                            <input type="file" id="photo_recto" accept="images/*" name="photo_recto" placeholder="Télécharger fichier" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-10">
-                               <?php if (!empty($errors['photo_recto'])): ?>
-                                <span class="text-red-500 text-sm font-bold"><?= $errors['photo_recto'] ?></span>
-                                <?php endif; ?>
-                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-gray-500">
-                               <i class="fa-solid fa-image"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-1/2">
-                        <label for="photo_verso" class="block text-gray-700 text-sm font-bold mb-2">Photo CIN Verso</label>
-                        <div class="relative">
-                            <input type="file" id="photo_verso" name="photo_verso" accept="images/*"  placeholder="Télécharger fichier" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-10">
-                                <?php if (!empty($errors['photo_verso'])): ?>
-                                    <span class="text-red-500 text-sm font-bold"><?= $errors['photo_verso'] ?></span>
-                               <?php endif; ?>
-
-                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-gray-500">
-                               <i class="fa-solid fa-image"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                   
-                </div>
               
                 <button type="submit" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline w-full">
                     Inscription
