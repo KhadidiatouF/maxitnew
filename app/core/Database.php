@@ -16,12 +16,14 @@ class Database {
         $dbname = DB_NAME;
         $username = USER_NAME;
         $password = PASSWORD;
+        $port = PORT;
+
 
 
         try{
 
          
-            $this->pdo= new PDO("pgsql:host=$host;dbname=$dbname", $username, $password);
+            $this->pdo= new PDO("pgsql:host=$host;dbname=$dbname;port=$port", $username, $password);
 
         } catch (PDOException $e) {
 

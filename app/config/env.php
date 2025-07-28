@@ -23,6 +23,8 @@ use Dotenv\Dotenv;
         define('HOST', $_ENV['HOST']);
         define('DB_NAME', $_ENV['DB_NAME']);
         define('USER_NAME', $_ENV['USER_NAME']);
+        define('PORT', $_ENV['PORT']);
+
       
 
 
