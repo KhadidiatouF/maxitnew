@@ -18,6 +18,8 @@ WORKDIR /var/www/html
 # Copier tout le projet dans le container
 COPY . .
 
+COPY .env.exemple /var/www/html/.env.exemple
+
 # Installer dépendances PHP via Composer
 RUN composer install --no-interaction --no-dev --optimize-autoloader
 
