@@ -20,8 +20,10 @@ use Dotenv\Dotenv;
         define('TOKEN', $_ENV['TWILIO_TOKEN']);
         define('PHONE', $_ENV['TWILIO_PHONE']);
  
-
-    
+        define('HOST', $_ENV['HOST']);
+        define('DB_NAME', $_ENV['DB_NAME']);
+        define('USER_NAME', $_ENV['USER_NAME']);
+      
 
 
 
