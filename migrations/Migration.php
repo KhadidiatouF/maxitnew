@@ -18,7 +18,7 @@ class Migration{
 
     public function run(){
         $this->pdo->exec("CREATE DATABASE {$this->dbname}");
-        $this->pdo= new \PDO("pgsql:host=localhost;port=5432;dbname={$_ENV['DB_NAME']}", USER, PASSWORD);
+        $this->pdo= new \PDO("pgsql:host=localhost;port=5432;dbname={$_ENV['DB_NAME']}", USER_NAME, PASSWORD);
 
         $queries=[
             "CREATE  type typeCompte as enum('principal','secondaire');",
